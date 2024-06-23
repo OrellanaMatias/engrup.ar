@@ -53,6 +53,7 @@ body {
   align-content: center;
   flex-wrap: wrap;
   border-radius: 10px;
+  margin: 0px 15px;
 }
 
 .header {
