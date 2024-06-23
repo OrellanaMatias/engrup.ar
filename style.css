@@ -1,0 +1,158 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-image: url(img/background.jpg);
+  background-size: cover;
+  background-position: left;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+@media (min-width: 1024px) {
+  body {
+    background-image: url('img/background.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.radio-group p {
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 1.2em;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+::placeholder {
+  color: #FCBF45;
+}
+
+.container {
+  background-color: rgba(247, 250, 251, 0.1);
+  border: 1px solid #FCBF45;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  width: 550px;
+  height: auto;
+  padding: 20px;
+  text-align: center;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  border-radius: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1.7rem;
+}
+
+.input-field {
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+#personas {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #FCBF45;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 10px;
+  height: 100px;
+  min-width: 90%;
+  max-width: 90%;
+  max-height: 70px;
+}
+
+.header img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.input-field {
+  margin-bottom: 20px;
+}
+
+.input-field input,
+.input-field select {
+  width: 90%;
+  padding: 10px;
+  border-color: #FCBF45;
+  font-family: 'Inter', sans-serif;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+.radio-group {
+  text-align: left;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  align-items: center;
+}
+
+.radio-group label {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.radio-group input {
+  margin-right: 10px;
+}
+
+.linitas {
+  background-color: #FFA500;
+  height: 1px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.submit-button {
+  background-color: #FFA500;
+  color: white;
+  width: 90%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.submit-button:hover {
+  background-color: #e69500;
+}
+
+p,
+label {
+  color: #75AADB;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

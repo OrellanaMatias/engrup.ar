@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style2.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <title>EnGrup.ar - Lista de grupos</title>
+</head>
+<body>
+    <a href="index.html" class="back-button">Volver atrás</a>
+    <div class="container">
+        <div class="header">
+            <img src="img/arg.webp" alt="Argentina Flag">
+            <h1>EnGrup.ar</h1>
+        </div>
+        <div class="title">Lista de grupos</div>
+        <ul class="group-list" id="groupList"></ul>
+        <div class="export-buttons">
+            <button class="export-button" onclick="exportToTxt()">Exportar a TXT</button>
+            <button class="export-button" onclick="exportToExcel()">Exportar a Excel</button>
+        </div>
+    </div>
+
+    <!-- modal jitjub-->
+    <div id="iconModal" class="modal">
+        <div class="modal-content" id="modalContent">
+            <button class="close-button" onclick="closeModal()">×</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

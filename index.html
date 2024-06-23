@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <title>EnGrup.ar</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="img/arg.webp" alt="Argentina Flag" />
+      <h1>EnGrup.ar</h1>
+    </div>
+    <form>
+      <div class="input-field">
+        <textarea id="personas" rows="4" placeholder="Ingresa nombres de personas, uno por línea"></textarea>
+      </div>
+      <div class="input-field">
+        <input type="number" id="numero" name="numero" min="1" max="8" placeholder="Número de grupos" />
+      </div>
+      <div class="input-field">
+        <input type="file" id="fileInput" accept=".txt" />
+      </div>
+      <div class="linitas"></div>
+      </br>
+      <div class="radio-group">
+        <label><input type="radio" name="order" value="random" checked/> Orden aleatorio</label>
+        <label><input type="radio" name="order" value="sequential" /> Orden de ingreso</label>
+      </div>
+      <button class="submit-button" type="button" onclick="processForm()" style="width: 40%;">Engrup.ar</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('fileInput').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById('personas').value = e.target.result;
+      };
+      reader.readAsText(file);
+    });
+  </script>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
