@@ -19,10 +19,12 @@
     </div>
     <form>
       <div class="input-field">
-        <textarea id="personas" rows="4" placeholder="Ingresa nombres de personas, uno por línea"></textarea>
+        <textarea id="personas" placeholder="Ingresa los nombres, uno por línea"></textarea>
+        <span class="error" id="personas-error"></span>
       </div>
       <div class="input-field">
-        <input type="number" id="numero" name="numero" min="1" max="8" placeholder="Número de grupos" />
+        <input type="number" id="numero" name="numero" min="1" max="8" placeholder="Número de grupos">
+        <span class="error" id="numero-error"></span>
       </div>
       <div class="input-field">
         <input type="file" id="fileInput" accept=".txt" />

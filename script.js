@@ -3,15 +3,52 @@ function processForm() {
   const numero = parseInt(document.getElementById('numero').value);
   const order = document.querySelector('input[name="order"]:checked').value;
 
+  let isValid = true;
+
+  // Validación de campos vacíos y número de grupos
+  const personasError = document.getElementById('personas-error');
+  const numeroError = document.getElementById('numero-error');
+
+  if (!personas.length) {
+    personasError.textContent = 'Por favor, ingresa los nombres.';
+    personasError.style.display = 'block';
+    isValid = false;
+  } else {
+    personasError.style.display = 'none';
+  }
+
+  if (isNaN(numero) || numero < 1 || numero > 8) {
+    numeroError.textContent = 'Por favor, ingresa un número de grupos válido (entre 1 y 8).';
+    numeroError.style.display = 'block';
+    isValid = false;
+  } else {
+    numeroError.style.display = 'none';
+  }
+
+  // Nueva validación: La cantidad de personas debe ser mayor o igual a la cantidad de grupos
+  if (personas.length < numero) {
+    numeroError.textContent = 'La cantidad de personas debe ser mayor o igual a la cantidad de grupos.';
+    numeroError.style.display = 'block';
+    isValid = false;
+  } else {
+    numeroError.style.display = 'none';
+  }
+
+  if (!isValid) {
+    return;
+  }
+
   if (order === 'random') {
     personas.sort(() => Math.random() - 0.5);
   }
 
   const grupos = [];
+  const icons = ['img/icon1.png', 'img/icon2.png', 'img/icon3.png', 'img/icon4.png'];
+
   for (let i = 0; i < numero; i++) {
     grupos.push({
       name: '',
-      image: '',
+      image: icons[i % icons.length], // Asignar icono automáticamente
       members: []
     });
   }
@@ -27,8 +64,6 @@ function processForm() {
 document.addEventListener('DOMContentLoaded', () => {
   const grupos = JSON.parse(localStorage.getItem('grupos')) || [];
   const groupList = document.getElementById('groupList');
-
-  const icons = ['img/icon1.png', 'img/icon2.png', 'img/icon3.png', 'img/icon4.png'];
 
   grupos.forEach((grupo, index) => {
     const groupItem = document.createElement('li');
@@ -114,8 +149,8 @@ function closeModal() {
   modal.style.display = 'none';
 }
 
-function updateGroupIcon(groupIcon, iconUrl) {
-  groupIcon.src = iconUrl;
+function updateGroupIcon(groupIconElement, icon) {
+  groupIconElement.src = icon;
 }
 
 function exportToTxt() {
