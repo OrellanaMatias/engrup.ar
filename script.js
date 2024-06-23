@@ -5,7 +5,6 @@ function processForm() {
 
   let isValid = true;
 
-  // Validación de campos vacíos y número de grupos
   const personasError = document.getElementById('personas-error');
   const numeroError = document.getElementById('numero-error');
 
@@ -25,7 +24,6 @@ function processForm() {
     numeroError.style.display = 'none';
   }
 
-  // Nueva validación: La cantidad de personas debe ser mayor o igual a la cantidad de grupos
   if (personas.length < numero) {
     numeroError.textContent = 'La cantidad de personas debe ser mayor o igual a la cantidad de grupos.';
     numeroError.style.display = 'block';
@@ -48,7 +46,7 @@ function processForm() {
   for (let i = 0; i < numero; i++) {
     grupos.push({
       name: '',
-      image: icons[i % icons.length], // Asignar icono automáticamente
+      image: icons[i % icons.length],
       members: []
     });
   }
