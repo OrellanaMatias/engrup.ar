@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggle = document.createElement('div');
     toggle.className = 'toggle';
-    toggle.innerHTML = '<img src="img/flecha.png" alt="Descripción de la imagen" style="width: 20px; height: 10px;">';
+    toggle.innerHTML = '<img src="img/flecha.png" alt="Descripción de la imagen" style="width: 30px; height: 20px;">';
 
     const nameList = document.createElement('ul');
     nameList.className = 'name-list';
