@@ -8,6 +8,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: fit-content;
 }
 
 @media (min-width: 1024px) {
