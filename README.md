@@ -22,6 +22,16 @@ xd
 
 ## Descargar
 Yo no lo descargo xq ya lo tngo
+It is recommended to download the app either from an app store or from a package manager because the app does not have an auto-update.
+
+| PC (Escritorio)          | Mobile              |
+|--------------------------|--------------------|
+| [WEB][]                  | [WEB][]            |
+|                          | [APK][]            |
+
+[WEB]: https://orellanamatias.github.io/engrup.ar
+[APK]: https://github.com/OrellanaMatias
+
 
 ## Como funciona
 
@@ -31,3 +41,5 @@ Con magia
 
 Yo, yo y yo
 PHP lover
+
+
