@@ -45,7 +45,10 @@
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.onload = function (e) {
-        document.getElementById('personas').value = e.target.result;
+        const existingNames = document.getElementById('personas').value.split('\n').map(p => p.trim()).filter(p => p);
+        const newNames = e.target.result.split('\n').map(p => p.trim()).filter(p => p);
+        const allNames = [...existingNames, ...newNames].join('\n');
+        document.getElementById('personas').value = allNames;
       };
       reader.readAsText(file);
     });
