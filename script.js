@@ -16,21 +16,19 @@ function processForm() {
     personasError.style.display = 'none';
   }
 
+
   if (isNaN(numero) || numero < 1 || numero > 8) {
     numeroError.textContent = 'Por favor, ingresa un número de grupos válido (entre 1 y 8).';
     numeroError.style.display = 'block';
     isValid = false;
-  } else {
-    numeroError.style.display = 'none';
-  }
-
-  if (personas.length < numero) {
+  } else if (personas.length < numero) {
     numeroError.textContent = 'La cantidad de personas debe ser mayor o igual a la cantidad de grupos.';
     numeroError.style.display = 'block';
     isValid = false;
   } else {
     numeroError.style.display = 'none';
   }
+
 
   if (!isValid) {
     return;
@@ -41,7 +39,7 @@ function processForm() {
   }
 
   const grupos = [];
-  const icons = ['img/icon1.png', 'img/icon2.png', 'img/icon3.png', 'img/icon4.png', 'img/icon5.png', 'img/icon6.png', 'img/icon7.png','img/icon8.png','img/icon9.png','img/icon10.png'];
+  const icons = ['img/icon1.webp', 'img/icon2.webp', 'img/icon3.webp', 'img/icon4.webp', 'img/icon5.webp', 'img/icon6.webp', 'img/icon7.webp','img/icon8.webp','img/icon9.webp','img/icon10.webp'];
 
   for (let i = 0; i < numero; i++) {
     grupos.push({
@@ -87,10 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggle = document.createElement('div');
     toggle.className = 'toggle';
-    toggle.innerHTML = '<img src="img/flecha.png" alt="Descripción de la imagen" style="width: 30px; height: 20px;">';
+    toggle.innerHTML = '<img src="img/flecha.webp" alt="Descripción de la imagen" style="width: 30px; height: 20px;">';
 
     const nameList = document.createElement('ul');
     nameList.className = 'name-list';
+    nameList.style.display = 'none'; // Asegurarse de que esté inicialmente oculto
 
     grupo.members.forEach(nombre => {
       const nameItem = document.createElement('li');
@@ -120,7 +119,7 @@ function openModal(groupIndex, groupIconElement) {
 
   const grupos = JSON.parse(localStorage.getItem('grupos')) || [];
   const usedIcons = grupos.map(grupo => grupo.image);
-  const icons = ['img/icon1.png', 'img/icon2.png', 'img/icon3.png', 'img/icon4.png', 'img/icon5.png', 'img/icon6.png', 'img/icon7.png','img/icon8.png','img/icon9.png','img/icon10.png'];
+  const icons = ['img/icon1.webp', 'img/icon2.webp', 'img/icon3.webp', 'img/icon4.webp', 'img/icon5.webp', 'img/icon6.webp', 'img/icon7.webp','img/icon8.webp','img/icon9.webp','img/icon10.webp'];
 
   icons.forEach(icon => {
     const iconElement = document.createElement('img');
@@ -175,18 +174,61 @@ function exportToExcel() {
   const grupos = JSON.parse(localStorage.getItem('grupos')) || [];
   if (!grupos) return;
 
-  const worksheetData = [];
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('Grupos');
+
+  // Añadimos encabezados de columnas
+  worksheet.columns = [
+      { header: 'Icono', key: 'icono', width: 15 },
+      { header: 'Nombre del Grupo', key: 'nombre', width: 25 },
+      { header: 'Integrantes', key: 'integrantes', width: 50 }
+  ];
+
   grupos.forEach((grupo, index) => {
-    worksheetData.push([grupo.name || `Grupo ${index + 1}`]);
-    grupo.members.forEach(nombre => {
-      worksheetData.push([nombre]);
-    });
-    worksheetData.push([]);
+      // Agregar espacio adicional para el icono
+      const startRow = worksheet.actualRowCount + 1;
+
+      const row = worksheet.addRow({
+          icono: '',  // La imagen se añadirá después
+          nombre: grupo.name || `Grupo ${index + 1}`,
+          integrantes: grupo.members.join(', ')
+      });
+
+      // Añadir imagen a la celda, ocupando varias filas
+      const imageId = workbook.addImage({
+          base64: getBase64Image(grupo.image),
+          extension: 'webp'
+      });
+
+      worksheet.addImage(imageId, {
+          tl: { col: 0, row: startRow - 1 },
+          ext: { width: 50, height: 50 }
+      });
+
+      // Añadir filas vacías adicionales para dar espacio a la imagen
+      for (let i = 0; i < 3; i++) {
+          worksheet.addRow({});
+      }
   });
 
-  const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
-  const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, 'Grupos');
+  workbook.xlsx.writeBuffer().then((buffer) => {
+      const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'grupos.xlsx';
+      a.click();
+  });
+}
 
-  XLSX.writeFile(workbook, 'grupos.xlsx');
+// Función para convertir una URL de imagen a base64
+function getBase64Image(url) {
+  const img = new Image();
+  img.crossOrigin = 'Anonymous';
+  img.src = url;
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  ctx.drawImage(img, 0, 0);
+  return canvas.toDataURL('image/webp').split(',')[1];  // Obtener solo la parte base64
 }
