@@ -85,10 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggle = document.createElement('div');
     toggle.className = 'toggle';
-    toggle.innerHTML = '<img src="img/flecha.webp" alt="si" style="width: 30px; height: 20px;">';
+    toggle.innerHTML = '<img src="img/flecha.webp" alt="Descripción de la imagen" style="width: 30px; height: 20px;">';
 
     const nameList = document.createElement('ul');
     nameList.className = 'name-list';
+    nameList.style.display = 'none'; // Asegurarse de que esté inicialmente oculto
 
     grupo.members.forEach(nombre => {
       const nameItem = document.createElement('li');
