@@ -16,21 +16,19 @@ function processForm() {
     personasError.style.display = 'none';
   }
 
+
   if (isNaN(numero) || numero < 1 || numero > 8) {
     numeroError.textContent = 'Por favor, ingresa un número de grupos válido (entre 1 y 8).';
     numeroError.style.display = 'block';
     isValid = false;
-  } else {
-    numeroError.style.display = 'none';
-  }
-
-  if (personas.length < numero) {
+  } else if (personas.length < numero) {
     numeroError.textContent = 'La cantidad de personas debe ser mayor o igual a la cantidad de grupos.';
     numeroError.style.display = 'block';
     isValid = false;
   } else {
     numeroError.style.display = 'none';
   }
+
 
   if (!isValid) {
     return;
