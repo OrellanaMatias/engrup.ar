@@ -1,3 +1,7 @@
+<p align="left">
+  <img src="logo.jpeg" alt="Logo temporal">
+</p>
+
 # Engrup.ar
 [Homepage][homepage] • [Landing-page][landing] • [GitHub][github]
 
