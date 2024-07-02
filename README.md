@@ -42,8 +42,8 @@ It is recommended to download the app either from an app store or from a package
 Con magia
 
 ## Autores
+El grupo 2
 
-Yo, yo y yo
-PHP lover
+El grupo 1 puro chat gpt, se caen a pedazos
 
 
