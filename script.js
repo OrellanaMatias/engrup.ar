@@ -174,18 +174,61 @@ function exportToExcel() {
   const grupos = JSON.parse(localStorage.getItem('grupos')) || [];
   if (!grupos) return;
 
-  const worksheetData = [];
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('Grupos');
+
+  // Añadimos encabezados de columnas
+  worksheet.columns = [
+      { header: 'Icono', key: 'icono', width: 15 },
+      { header: 'Nombre del Grupo', key: 'nombre', width: 25 },
+      { header: 'Integrantes', key: 'integrantes', width: 50 }
+  ];
+
   grupos.forEach((grupo, index) => {
-    worksheetData.push([grupo.name || `Grupo ${index + 1}`]);
-    grupo.members.forEach(nombre => {
-      worksheetData.push([nombre]);
-    });
-    worksheetData.push([]);
+      // Agregar espacio adicional para el icono
+      const startRow = worksheet.actualRowCount + 1;
+
+      const row = worksheet.addRow({
+          icono: '',  // La imagen se añadirá después
+          nombre: grupo.name || `Grupo ${index + 1}`,
+          integrantes: grupo.members.join(', ')
+      });
+
+      // Añadir imagen a la celda, ocupando varias filas
+      const imageId = workbook.addImage({
+          base64: getBase64Image(grupo.image),
+          extension: 'webp'
+      });
+
+      worksheet.addImage(imageId, {
+          tl: { col: 0, row: startRow - 1 },
+          ext: { width: 50, height: 50 }
+      });
+
+      // Añadir filas vacías adicionales para dar espacio a la imagen
+      for (let i = 0; i < 3; i++) {
+          worksheet.addRow({});
+      }
   });
 
-  const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
-  const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, 'Grupos');
+  workbook.xlsx.writeBuffer().then((buffer) => {
+      const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'grupos.xlsx';
+      a.click();
+  });
+}
 
-  XLSX.writeFile(workbook, 'grupos.xlsx');
+// Función para convertir una URL de imagen a base64
+function getBase64Image(url) {
+  const img = new Image();
+  img.crossOrigin = 'Anonymous';
+  img.src = url;
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  ctx.drawImage(img, 0, 0);
+  return canvas.toDataURL('image/webp').split(',')[1];  // Obtener solo la parte base64
 }
