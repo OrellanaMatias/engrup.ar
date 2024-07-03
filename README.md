@@ -1,5 +1,5 @@
 
-![Logo](img/EnGrupar.png)
+![Logo](img/logo.jpeg)
 
 
 # engrup.ar
