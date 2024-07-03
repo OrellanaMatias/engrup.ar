@@ -8,11 +8,12 @@ Engrup.ar es un software que permite al usuario formar grupos de personas de man
 
 ## Screenshots
 
-![App Screenshot](screenshots/01.webp)
-![App Screenshot](screenshots/02.webp)
-![App Screenshot](screenshots/03.webp)
-![App Screenshot](screenshots/04.webp)
-![App Screenshot](screenshots/05.webp)
+<img src="screenshots/01.webp" alt="App Screenshot" width="300" />
+<img src="screenshots/02.webp" alt="App Screenshot" width="300" />
+<img src="screenshots/03.webp" alt="App Screenshot" width="300" />
+<img src="screenshots/04.webp" alt="App Screenshot" width="300" />
+<img src="screenshots/05.webp" alt="App Screenshot" width="300" />
+
 
 
 
