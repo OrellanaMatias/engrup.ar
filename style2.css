@@ -7,7 +7,7 @@ html, body {
 
 
 body {
-  background-image: url(img/background.jpg);
+  background-image: url(img/background.webp);
   background-size: cover;
   background-position: left;
   font-family: Arial, sans-serif;
@@ -20,7 +20,7 @@ body {
 
 @media (min-width: 1024px) {
   body {
-    background-image: url('img/background.jpg');
+    background-image: url('img/background.webp');
     background-size: cover;
     background-position: center;
   }
