@@ -4,9 +4,10 @@ html {
 }
 
 body {
-  background-image: url(img/background.webp);
+  background-image: url('img/background.webp');
   background-size: cover;
   background-position: left;
+  background-attachment: fixed;
   font-family: Arial, sans-serif;
   margin: 0;
   padding-top: 30px;
@@ -32,6 +33,7 @@ body {
   font-size: 1.2em;
   margin: 0;
   font-family: 'Inter', sans-serif;
+  color: #2e2e2e;
 }
 
 ::placeholder {
@@ -81,7 +83,8 @@ body {
 #personas {
   width: 90%;
   padding: 10px;
-  border: 1px solid #FCBF45;
+  border: 2px solid;
+  border-color: #FCBF45;;
   border-radius: 5px;
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
@@ -101,14 +104,19 @@ body {
   margin-bottom: 20px;
 }
 
-.input-field input,
-.input-field select {
+.input-field input {
   width: 90%;
   padding: 10px;
   border-color: #FCBF45;
   font-family: 'Inter', sans-serif;
   border-style: solid;
   border-radius: 5px;
+}
+
+.input-field .custom-input:focus {
+  background-color: #f0f8ff;
+  border-color: #75aadb;
+  outline: none;
 }
 
 .radio-group {
@@ -125,10 +133,46 @@ body {
   flex-flow: row wrap;
   align-items: center;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .radio-group input {
   margin-right: 10px;
+  cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+  appearance: none; 
+  width: 18px;
+  height: 18px;
+  border: 2px solid #75aadb; 
+  border-radius: 50%;
+  outline: none;
+  margin-right: 10px;
+  position: relative;
+}
+
+.radio-group input[type="radio"]:checked {
+  border-color: #FCBF45; 
+  background-color: #FCBF45; 
+}
+
+.radio-group input[type="radio"]::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: #FFFFFF;
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.radio-group input[type="radio"]:checked::after {
+  opacity: 1;
 }
 
 .linitas {

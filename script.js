@@ -39,7 +39,7 @@ function processForm() {
   }
 
   const grupos = [];
-  const icons = ['img/icon1.webp', 'img/icon2.webp', 'img/icon3.webp', 'img/icon4.webp', 'img/icon5.webp', 'img/icon6.webp', 'img/icon7.webp','img/icon8.webp','img/icon9.webp','img/icon10.webp'];
+  const icons = ['img/icon1.png', 'img/icon2.png', 'img/icon3.png', 'img/icon4.png', 'img/icon5.png', 'img/icon6.png', 'img/icon7.png','img/icon8.png','img/icon9.png','img/icon10.png'];
 
   for (let i = 0; i < numero; i++) {
     grupos.push({
@@ -119,7 +119,7 @@ function openModal(groupIndex, groupIconElement) {
 
   const grupos = JSON.parse(localStorage.getItem('grupos')) || [];
   const usedIcons = grupos.map(grupo => grupo.image);
-  const icons = ['img/icon1.webp', 'img/icon2.webp', 'img/icon3.webp', 'img/icon4.webp', 'img/icon5.webp', 'img/icon6.webp', 'img/icon7.webp','img/icon8.webp','img/icon9.webp','img/icon10.webp'];
+  const icons = ['img/icon1.png', 'img/icon2.png', 'img/icon3.png', 'img/icon4.png', 'img/icon5.png', 'img/icon6.png', 'img/icon7.png','img/icon8.png','img/icon9.png','img/icon10.png'];
 
   icons.forEach(icon => {
     const iconElement = document.createElement('img');

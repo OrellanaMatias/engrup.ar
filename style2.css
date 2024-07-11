@@ -7,15 +7,17 @@ html, body {
 
 
 body {
-  background-image: url(img/background.webp);
+  background-image: url('img/background.webp');
   background-size: cover;
   background-position: left;
+  background-attachment: fixed;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: fit-content;
 }
 
 @media (min-width: 1024px) {
@@ -25,6 +27,7 @@ body {
     background-position: center;
   }
 }
+
 
 .container {
   max-width: 1200px;
@@ -61,6 +64,8 @@ body {
   font-size: 1.2em;
   margin: 0;
   font-family: 'Inter', sans-serif;
+  color: #2e2e2e;
+
 }
 
 .title {
@@ -91,6 +96,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: fit-content;
 }
 
 .group-header {
@@ -258,3 +264,10 @@ body {
 .back-button:hover {
   background-color: #2980b9;
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}
+
